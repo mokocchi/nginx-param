@@ -1,0 +1,23 @@
+    error_log /tmp/error.log;
+    pid       /tmp/nginx.pid;
+    
+    events {
+      
+    }
+    http {
+      server {
+        listen       ${PORT};
+    
+        access_log /tmp/nginx_host.access.log;
+        client_body_temp_path /tmp/client_body;
+        fastcgi_temp_path /tmp/fastcgi_temp;
+        proxy_temp_path /tmp/proxy_temp;
+        scgi_temp_path /tmp/scgi_temp;
+        uwsgi_temp_path /tmp/uwsgi_temp;
+    
+        location / {
+          proxy_pass              http://${BACK_HOST}:${BACK_PORT}; 
+          proxy_set_header        Host $host;
+        }
+      }
+}
