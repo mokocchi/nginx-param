@@ -1,8 +1,8 @@
 FROM nginx:1.21-alpine
 
-RUN apk update && apk add --no-cache gettext
+RUN apk update && apk add --no-cache gettext nano
 
-ENV VARS='${BACK_HOST},${BACK_PORT}'
+ENV VARS='${BACK_HOST},${BACK_PORT},${BODY_SIZE},${PROXY_TIMEOUT}'
 
 COPY nginx.template /etc/nginx/nginx.template0
 

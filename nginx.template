@@ -18,6 +18,8 @@
         location / {
           proxy_pass              http://${BACK_HOST}:${BACK_PORT}; 
           proxy_set_header        Host $host;
+          client_max_body_size    ${BODY_SIZE};
+          proxy_read_timeout      ${PROXY_TIMEOUT};
         }
       }
 }
